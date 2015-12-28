@@ -1,0 +1,38 @@
+body { background-color: #f2f2f2 }
+a:hover { color: red }
+
+th.title   { background-color: #b3f0ff;
+             font-size: 28px;
+             font-family: Arial, Helvetica, sans-serif;
+}
+th { background-color: #f2f2f2;
+     font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+td { font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+legend {
+  font-weight: bold;
+  color: black;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  padding: 3px 2px;
+}
+.ajaxResult { color: #b3f0ff;
+              font-weight: bold;
+              font-size: 18px;
+              font-family: Arial, Helvetica, sans-serif;
+}
+h2 { color: #440000;
+	  font-weight: bold;
+	  font-size: 18px;
+	  font-family: Arial, Helvetica, sans-serif;
+}
+.error { background-color: red;
+	      color: black;
+	      font-weight: bold;
+	      font-size: 20px;
+	      font-family: Arial, Helvetica, sans-serif;
+	      border-style: inset;
+}
