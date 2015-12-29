@@ -7,6 +7,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<!-- Use the URL http://hostname/appname/show-customers for the CustomerList 
 		servlet. -->
+		
+	<servlet>
+		<servlet-name>Add Staff</servlet-name>
+		<servlet-class>com.staff.web.service.Staff_Service_Google_ProjectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Add Staff</servlet-name>
+		<url-pattern>/datastore_service</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>All Staff Servlet</servlet-name>
 		<servlet-class>com.staff.web.service.FindStaff</servlet-class>

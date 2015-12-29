@@ -51,12 +51,10 @@ public class StaffUtils {
 	}
 
 	public static List<StaffInfo> getNamedCustomer(String firstname, String lastname) {
-
 		Map<String, StaffInfo> staffInfoMap = getSampleStaff();
 		ArrayList<StaffInfo> staffList = new ArrayList<StaffInfo>();
 		for (StaffInfo info : staffInfoMap.values()) {
-			if (info.getForename().equalsIgnoreCase(firstname)
-					&& (info.getSurname().equalsIgnoreCase(lastname))) {
+			if (info.getForename().equalsIgnoreCase(firstname) && (info.getSurname().equalsIgnoreCase(lastname))) {
 				staffList.add(info);
 			}
 		}

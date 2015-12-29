@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Staff Web Service</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="./scripts/ajax-utils.js" type="text/javascript"></script>
+<script src="./scripts/ajax-basics-1.js" type="text/javascript"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h2>Staff Web Service</h2>
+			<h4>Get Staff Data in XML, Json or Text</h4>
+			<h4>Add Staff Members to Google Datastore</h4>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Find All Staff</h3>
+				<form action="#">
+					<select id="format">
+						<option value="xml" selected="selected">XML</option>
+						<option value="json">JSON</option>
+						<option value="string">Text</option>
+					</select> <br /> <input type="button" value="Get Staff Details"
+						onclick='getAllStaff("format", "all_staff")' />
+				</form>
+			</div>
+
+			<div id="all_staff"></div>
+
+			<div class="col-sm-4">
+				<h3>Find Staff Member in Text, Json or XML</h3>
+				<form action="#">
+					<label>First name: <input type="text" id="firstname" />
+					</label> <br /> <label>Last name: <input type="text" id="lastname" /></label>
+					<br /> <label for="data-type">Retrieve Data in XML, Json
+						or String:</label> <select id="individual">
+						<option value="xml" selected="selected">XML</option>
+						<option value="json">JSON</option>
+						<option value="string">Text</option>
+					</select> <br /> <input type="button" value="Get Staff Details"
+						onclick='getStaffMember("firstname", "lastname", "individual", "staff_result")' />
+				</form>
+			</div>
+
+			<div id="staff_result"></div>
+
+			<div class="col-sm-4">
+				<h3>Add Staff Member</h3>
+				<form action="#">
+					<label>First name: <input type="text" id="forename" />
+					</label> <br /> <label>Last name: <input type="text" id="surname" /></label>
+					<br /> <label>Email: <input type="text" id="email" /></label> <br />
+					<label>Phone Number: <input type="text" id="phone_num" /></label>
+					<br /> <label>Address: <input type="text" id="address" /></label>
+					<br /> <input type="button" value="Add Staff"
+						onclick='addStaffMember("forename", "surname", "email", "phone_num", "address", "staff_result_add")' />
+				</form>
+			</div>
+			
+			<div id="staff_result_add"></div>
+			
+		</div>
+	</div>
+
+</body>
+</html>

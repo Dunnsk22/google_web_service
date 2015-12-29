@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.staff.service.web.model.StaffInfo;
 
 /**
@@ -36,19 +39,17 @@ public class AddStaffMember {
 	}
 
 	public void addStaffMember(StaffInfo staff) throws SQLException {
-		String query = "insert into staff_info (staff_id, forename, surname, address, phone_number, email) values (?,?,?,?,?,?)";
-		try {
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, staff.getStaffID());
-			statement.setString(2, staff.getForename());
-			statement.setString(3, staff.getSurname());
-			statement.setString(4, staff.getLocation());
-			statement.setString(5, staff.getPhone());
-			statement.setString(6, staff.getEmail());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
+		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
+		
+		Entity staffMember = new Entity("Staff");
+		staffMember.setProperty("Forename", staff.getForename());
+		staffMember.setProperty("Surname",  staff.getSurname());
+		staffMember.setProperty("Email", staff.getEmail());
+		staffMember.setProperty("Phone_Number", staff.getPhone());
+		staffMember.setProperty("Address", staff.getLocation());
+
+		dataStoreService.put(staffMember);
 	}
 
 }

@@ -52,7 +52,7 @@ public class AddStaffMemberServlet extends HttpServlet {
 		System.out.println("Forename is " + forename);
 		StaffInfo staffMember = new StaffInfo();
 
-		staffMember.setStaffID(102);
+		staffMember.setStaffID("102");
 		staffMember.setForename(forename);
 		staffMember.setSurname(surname);
 		staffMember.setLocation(address);

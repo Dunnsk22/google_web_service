@@ -3,11 +3,20 @@
  */
 package com.staff.service.web.model;
 
-public class StaffInfo {
-	String Surname, Forename, Address, Email, Phone;
-	int StaffID;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	public StaffInfo(int staffID, String surname, String forename, String address, String phone, String email) {
+@Entity
+public class StaffInfo {
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	String Surname, Forename, Address, Email, Phone;
+	String StaffID;
+	
+
+	public StaffInfo(String staffID, String surname, String forename, String address, String phone, String email) {
 		super();
 		Surname = surname;
 		Forename = forename;
@@ -24,15 +33,15 @@ public class StaffInfo {
 		this.Address = "";
 		this.Email = "";
 		this.Phone = "";
-		this.StaffID = 0;
+		this.StaffID = "";
 
 	}
 
-	public int getStaffID() {
+	public String getStaffID() {
 		return StaffID;
 	}
 
-	public void setStaffID(int staffID) {
+	public void setStaffID(String staffID) {
 		StaffID = staffID;
 	}
 
