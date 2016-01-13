@@ -12,15 +12,12 @@ import java.util.Map;
 import com.staff.service.web.model.StaffInfo;
 
 public class StaffUtils {
-	private static Map<String, StaffInfo> sampleStaff;
+	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
 
-	static {
-		sampleStaff = new LinkedHashMap<String, StaffInfo>();
-		sampleStaff = ConnectToMySQL.getStaffMembers();
-	}
 
 	public static Map<String, StaffInfo> getSampleStaff() {
-		return (sampleStaff);
+		staffListData = StaffDAO.getStaffMembers();
+		return staffListData;
 	}
 
 	public static List<StaffInfo> findAllStaff() {
@@ -47,7 +44,7 @@ public class StaffUtils {
 		if (id == null) {
 			id = "unknown";
 		}
-		return (sampleStaff.get(id.toLowerCase()));
+		return staffListData.get(id.toLowerCase());
 	}
 
 	public static List<StaffInfo> getNamedCustomer(String firstname, String lastname) {
@@ -73,6 +70,6 @@ public class StaffUtils {
 	}
 
 	public static Map<String, StaffInfo> getSampleCustomers() {
-		return (sampleStaff);
+		return (staffListData);
 	}
 }

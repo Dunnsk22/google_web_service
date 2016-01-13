@@ -9,13 +9,13 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.staff.service.web.model.StaffInfo;
 
-public class ConnectToMySQL {
+public class StaffDAO {
 
-	private static Map<String, StaffInfo> sampleStaff;
+	private static Map<String, StaffInfo> staffMapData;
 
 	public static Map<String,StaffInfo> getStaffMembers() {
 		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
-		sampleStaff = new LinkedHashMap<String, StaffInfo>();
+		staffMapData = new LinkedHashMap<String, StaffInfo>();
 		Query query = new Query("Staff").addSort("Forename", Query.SortDirection.ASCENDING);
 		PreparedQuery prep = dataStoreService.prepare(query);
 		for (Entity entity : prep.asIterable()) {
@@ -26,9 +26,9 @@ public class ConnectToMySQL {
 			String email = entity.getProperty("Email").toString(); 
 			String address = entity.getProperty("Address").toString();
 			String phone_num = entity.getProperty("Phone_Number").toString();
-			sampleStaff.put(id, new StaffInfo( id, forename, surname, address, phone_num, email ) );		
+			staffMapData.put(id, new StaffInfo( id, forename, surname, address, phone_num, email ) );		
 			}
-		return sampleStaff;
+		return staffMapData;
 	}		
 		
 }

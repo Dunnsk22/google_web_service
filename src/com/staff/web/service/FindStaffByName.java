@@ -10,6 +10,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import com.staff.service.web.model.StaffInfo;
 
@@ -60,6 +66,7 @@ public class FindStaffByName extends FindStaffByID {
 			}
 			sortedDataText += "&lt;/membersOfStaff&gt; \n \n";
 			System.out.println("XML DATA:  " + sortedDataText);
+
 
 		} else if (format.equalsIgnoreCase("string") ) {
 			
