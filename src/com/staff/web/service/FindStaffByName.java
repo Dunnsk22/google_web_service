@@ -32,11 +32,11 @@ public class FindStaffByName extends FindStaffByID {
 
 	    if (format.equalsIgnoreCase("json") ) {
 
-			sortedDataText = "{ \"membersOfStaff\":[ ";
+			sortedDataText = "[ ";
 
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "{\"id\":" + "\"" + staffInfoList.get(i).getStaffID() + "\",";
+				sortedDataText += "{\" id\":" + "\"" + staffInfoList.get(i).getStaffID() + "\",";
 				sortedDataText += "\"forename\":" + "\"" + staffInfoList.get(i).getForename() + "\",";
 				sortedDataText += "\"surname\":" + "\"" + staffInfoList.get(i).getSurname() + "\",";
 				sortedDataText += "\"address\":" + "\"" + staffInfoList.get(i).getLocation() + "\",";
@@ -48,23 +48,24 @@ public class FindStaffByName extends FindStaffByID {
 				}
 			}
 
-			sortedDataText += "]}";
+			sortedDataText += "]";
 
 			System.out.println("JSON DATA:  " + sortedDataText);
 
 		} else if (format.equalsIgnoreCase("xml") ) {
-			sortedDataText = "&lt;membersOfStaff&gt;";
+			sortedDataText = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+			sortedDataText = "<membersOfStaff>";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "&lt;staffMember&gt;\n\n \t \t&lt;id&gt;" + staffInfoList.get(i).getStaffID() + "&lt;/id&gt;\n";
-				sortedDataText += "&lt;forename&gt;" + staffInfoList.get(i).getForename() + "&lt;/forename&gt;";
-				sortedDataText += "&lt;surname&gt;" + staffInfoList.get(i).getSurname() + "&lt;/surname&gt;";
-				sortedDataText += "&lt;address&gt;" + staffInfoList.get(i).getLocation() + "&lt;/address&gt;";
-				sortedDataText += "&lt;phoneNumber&gt;" + staffInfoList.get(i).getPhone() + "&lt;/phoneNumber&gt;";
-				sortedDataText += "&lt;email&gt;" + staffInfoList.get(i).getEmail() + "&lt;/email>&lt;/staffMember&gt;";
+				sortedDataText += "<staffMember>\n\n \t \t<id>" + staffInfoList.get(i).getStaffID() + "</id>\n";
+				sortedDataText += "<forename>" + staffInfoList.get(i).getForename() + "</forename>";
+				sortedDataText += "<surname>" + staffInfoList.get(i).getSurname() + "</surname>";
+				sortedDataText += "<address>" + staffInfoList.get(i).getLocation() + "</address>";
+				sortedDataText += "<phoneNumber>" + staffInfoList.get(i).getPhone() + "</phoneNumber>";
+				sortedDataText += "<email>" + staffInfoList.get(i).getEmail() + "</email></staffMember>";
 
 			}
-			sortedDataText += "&lt;/membersOfStaff&gt; \n \n";
+			sortedDataText += "</membersOfStaff> \n \n";
 			System.out.println("XML DATA:  " + sortedDataText);
 
 

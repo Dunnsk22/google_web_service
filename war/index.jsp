@@ -30,7 +30,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Staff Web Service - Joshua Dunn 12100434</a>
+				<a class="navbar-brand" href="#">Staff Web Service - Joshua Dunn
+					12100434</a>
 			</div>
 		</div>
 		<!-- /.container -->
@@ -42,7 +43,8 @@
 		<!-- Jumbotron Header -->
 		<header class="jumbotron hero-spacer">
 			<h2>Staff Web Service</h2>
-			<p>Retrieve data in xml, json or text formats. Also, add Staff members to the google datastore.</p>
+			<p>Retrieve data in xml, json or text formats. Also, add Staff
+				members to the google datastore.</p>
 		</header>
 
 		<hr>
@@ -50,7 +52,9 @@
 		<!-- Title -->
 		<div class="row">
 			<div class="col-lg-12">
-				<center><h3>Web Service Functions</h3></center>
+				<center>
+					<h3>Web Service Functions</h3>
+				</center>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -74,7 +78,7 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-				  <h3>Find Member of Staff</h3>
+					<h3>Find Member of Staff</h3>
 					<form action="#">
 						<label>First name: <input type="text" id="firstname" />
 						</label> <br /> <label>Last name: <input type="text"
@@ -83,7 +87,8 @@
 							<option value="json">JSON</option>
 							<option value="string">Text</option>
 						</select> <br /> <input type="button" value="Get Staff Details"
-							onclick='getStaffMember("firstname", "lastname", "individual", "result-region")' />
+							onclick='xmlCustomerTable("result-region",
+                                   "firstname", "lastname")' />
 					</form>
 				</div>
 			</div>
@@ -104,16 +109,19 @@
 			</div>
 		</div>
 		<hr>
-		
+
 		<!-- Response Region -->
-		<center><h3>Results:</h3></center>
-			<div id="result-region"></div>
+		<center>
+			<h3>Results:</h3>
+		</center>
+		<div id="result-region"></div>
 
 		<!-- Footer -->
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Joshua Dunn &copy; Staff Web Service - Enterprise Programming - 12100434</p>
+					<p>Joshua Dunn &copy; Staff Web Service - Enterprise
+						Programming - 12100434</p>
 				</div>
 			</div>
 		</footer>
@@ -122,6 +130,25 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
+
+
 </body>
+
+<style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #f5f5f5
+}
+</style>
 
 </html>

@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.staff.service.web.model.StaffInfo;
 
 public class StaffUtils {
@@ -72,4 +71,13 @@ public class StaffUtils {
 	public static Map<String, StaffInfo> getSampleCustomers() {
 		return (staffListData);
 	}
+
+	  public static StaffInfo getCustomerOrDefault(String id) {
+		    StaffInfo staffInfo = getCustomer(id);
+		    String unknown = "Unknown";
+		    if (staffInfo == null) {
+		      staffInfo = new StaffInfo(id, unknown, unknown, unknown, unknown, unknown);
+		    }
+		    return(staffInfo);
+		  }
 }
