@@ -16,7 +16,7 @@ public class StaffDAO {
 	public static Map<String,StaffInfo> getStaffMembers() {
 		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		staffMapData = new LinkedHashMap<String, StaffInfo>();
-		Query query = new Query("Staff").addSort("Forename", Query.SortDirection.ASCENDING);
+		Query query = new Query("StaffDetails");
 		PreparedQuery prep = dataStoreService.prepare(query);
 		for (Entity entity : prep.asIterable()) {
 			String idKey = entity.getKey().toString();
@@ -25,8 +25,8 @@ public class StaffDAO {
 			String surname = entity.getProperty("Surname").toString();
 			String email = entity.getProperty("Email").toString(); 
 			String address = entity.getProperty("Address").toString();
-			String phone_num = entity.getProperty("Phone_Number").toString();
-			staffMapData.put(id, new StaffInfo( id, forename, surname, address, phone_num, email ) );		
+			String phone_num = entity.getProperty("Phone_Num").toString();
+			staffMapData.put(id, new StaffInfo( id, forename, surname, address, email, phone_num ) );		
 			}
 		return staffMapData;
 	}		

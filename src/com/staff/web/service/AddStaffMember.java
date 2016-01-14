@@ -42,11 +42,11 @@ public class AddStaffMember {
 		
 		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		
-		Entity staffMember = new Entity("Staff");
+		Entity staffMember = new Entity("StaffDetails");
 		staffMember.setProperty("Forename", staff.getForename());
 		staffMember.setProperty("Surname",  staff.getSurname());
 		staffMember.setProperty("Email", staff.getEmail());
-		staffMember.setProperty("Phone_Number", staff.getPhone());
+		staffMember.setProperty("Phone_Num", staff.getPhone());
 		staffMember.setProperty("Address", staff.getLocation());
 
 		dataStoreService.put(staffMember);
