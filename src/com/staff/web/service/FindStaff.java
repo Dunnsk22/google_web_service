@@ -18,7 +18,7 @@ public class FindStaff extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sortedDataText = null;
-		List<StaffInfo> staffInfoList = StaffUtils.findAllStaff();
+		List<StaffInfo> staffInfoList = StaffUtilities.findAllStaff();
 		String format = request.getParameter("format");
 
 		if (format.equalsIgnoreCase("json") ) {

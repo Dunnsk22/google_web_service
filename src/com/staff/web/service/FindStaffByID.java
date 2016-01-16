@@ -18,20 +18,20 @@ import com.staff.service.web.model.StaffInfo;
  * @author joshuadunn
  *
  */
-public class FindStaffByID extends HttpServlet {
-	  
-public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	String staffID = request.getParameter("staffID");
-	StaffInfo staff = StaffUtils.getCustomer(staffID);
-	
-	String staffData;
-	if (staff == null) {
-	staffData = ResultUtils.makeErrorMessage("ID");
-	} else {
-	staffData = ResultUtils.makeBulletedList(staff);
-	}
-	PrintWriter out = response.getWriter();
-	out.print(staffData);
-	}
-}
+//public class FindStaffByID extends HttpServlet {
+//	  
+//public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//	String staffID = request.getParameter("staffID");
+//	StaffInfo staff = StaffUtilities.getCustomer(staffID);
+//	
+//	String staffData;
+//	if (staff == null) {
+//	staffData = ResultUtils.makeErrorMessage("ID");
+//	} else {
+//	staffData = ResultUtils.makeBulletedList(staff);
+//	}
+//	PrintWriter out = response.getWriter();
+//	out.print(staffData);
+//	}
+//}

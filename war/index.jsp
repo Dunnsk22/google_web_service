@@ -87,8 +87,7 @@
 							<option value="json">JSON</option>
 							<option value="string">Text</option>
 						</select> <br /> <input type="button" value="Get Staff Details"
-							onclick='xmlCustomerTable("result-region",
-                                   "firstname", "lastname")' />
+							onclick='getStaffMember("firstname", "lastname", "individual","result-region" )' />
 					</form>
 				</div>
 			</div>
@@ -103,7 +102,7 @@
 						<label>Phone Number: <input type="text" id="phone_num" /></label>
 						<br /> <label>Address: <input type="text" id="address" /></label>
 						<br /> <input type="button" value="Add Staff"
-							onclick='addStaffMember("forename", "surname", "email", "phone_num", "address", "staff_result_add")' />
+							onclick='addStaffMember("forename", "surname", "address", "phone_num", "email", "staff_result_add")' />
 					</form>
 				</div>
 			</div>
@@ -134,10 +133,16 @@
 
 </body>
 
+
+<!-- Internal Styling for the Dynamically Generated Table  -->
 <style>
 table {
 	border-collapse: collapse;
 	width: 100%;
+}
+
+th {
+	background-color: #e4e7e5;
 }
 
 th, td {

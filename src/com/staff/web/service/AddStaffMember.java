@@ -31,25 +31,22 @@ public class AddStaffMember {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			System.out.println("Connected");
 			connection = DriverManager.getConnection(url, user, password);
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | SQLException e) {
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			System.out.println("Disconnected");
 		}
 	}
 
-	public void addStaffMember(StaffInfo staff) throws SQLException {
-		
-		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
-		
-		Entity staffMember = new Entity("StaffDetails");
-		staffMember.setProperty("Forename", staff.getForename());
-		staffMember.setProperty("Surname",  staff.getSurname());
-		staffMember.setProperty("Email", staff.getEmail());
-		staffMember.setProperty("Phone_Num", staff.getPhone());
-		staffMember.setProperty("Address", staff.getLocation());
-
-		dataStoreService.put(staffMember);
-	}
-
+//	public void addStaffMember(StaffInfo staff) throws SQLException {		
+//		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
+//		Entity staffMember = new Entity("StaffDetails");
+//		staffMember.setProperty("Forename", staff.getForename());
+//		staffMember.setProperty("Surname",  staff.getSurname());
+//		staffMember.setProperty("Email", staff.getEmail());
+//		staffMember.setProperty("Phone_Num", staff.getPhone());
+//		staffMember.setProperty("Address", staff.getLocation());
+//
+//		//Add the data to the GAE Datastore
+//		dataStoreService.put(staffMember);
+//	}
 }

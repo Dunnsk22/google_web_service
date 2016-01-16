@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
@@ -19,8 +21,8 @@ import org.w3c.dom.Element;
 
 import com.staff.service.web.model.StaffInfo;
 
-
-public class FindStaffByName extends FindStaffByID {
+@WebServlet("/FindStaffByName")
+public class FindStaffByName extends HttpServlet{
 	  
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String firstName = request.getParameter("firstname");
@@ -28,7 +30,7 @@ public class FindStaffByName extends FindStaffByID {
 	    String format = request.getParameter("format");
 	    String sortedDataText = null;
 	   	    
-	    List<StaffInfo> staffInfoList = StaffUtils.getNamedCustomer(firstName, lastName);
+	    List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(firstName, lastName);
 
 	    if (format.equalsIgnoreCase("json") ) {
 

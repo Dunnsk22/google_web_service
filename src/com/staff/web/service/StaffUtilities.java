@@ -8,11 +8,12 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.staff.service.web.dao.StaffDAO;
 import com.staff.service.web.model.StaffInfo;
 
-public class StaffUtils {
+public class StaffUtilities {
 	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
-
 
 	public static Map<String, StaffInfo> getSampleStaff() {
 		staffListData = StaffDAO.getStaffMembers();
@@ -20,7 +21,6 @@ public class StaffUtils {
 	}
 
 	public static List<StaffInfo> findAllStaff() {
-
 		Map<String, StaffInfo> staffInfoMap = getSampleStaff();
 		ArrayList<StaffInfo> staffList = new ArrayList<StaffInfo>();
 		for (StaffInfo info : staffInfoMap.values()) {
@@ -30,7 +30,7 @@ public class StaffUtils {
 	}
 
 	public static List<StaffInfo> findAllStaffByName(String name) {
-
+		
 		Map<String, StaffInfo> staffInfoMap = getSampleStaff();
 		ArrayList<StaffInfo> staffList = new ArrayList<StaffInfo>();
 		for (StaffInfo c : staffInfoMap.values()) {
@@ -39,12 +39,12 @@ public class StaffUtils {
 		return staffList;
 	}
 
-	public static StaffInfo getCustomer(String id) {
-		if (id == null) {
-			id = "unknown";
-		}
-		return staffListData.get(id.toLowerCase());
-	}
+//	public static StaffInfo getCustomer(String id) {
+//		if (id == null) {
+//			id = "unknown";
+//		}
+//		return staffListData.get(id.toLowerCase());
+//	}
 
 	public static List<StaffInfo> getNamedCustomer(String firstname, String lastname) {
 		Map<String, StaffInfo> staffInfoMap = getSampleStaff();
@@ -72,12 +72,12 @@ public class StaffUtils {
 		return (staffListData);
 	}
 
-	  public static StaffInfo getCustomerOrDefault(String id) {
-		    StaffInfo staffInfo = getCustomer(id);
-		    String unknown = "Unknown";
-		    if (staffInfo == null) {
-		      staffInfo = new StaffInfo(id, unknown, unknown, unknown, unknown, unknown);
-		    }
-		    return(staffInfo);
-		  }
+//	  public static StaffInfo getCustomerOrDefault(String id) {
+//		    StaffInfo staffInfo = getCustomer(id);
+//		    String unknown = "Unknown";
+//		    if (staffInfo == null) {
+//		      staffInfo = new StaffInfo(id, unknown, unknown, unknown, unknown, unknown);
+//		    }
+//		    return(staffInfo);
+//		  }
 }

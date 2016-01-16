@@ -20,19 +20,37 @@ function getAllStaff(inputField, resultRegion) {
 
 function getStaffMember(firstname, lastname, format, resultRegion) {
 	var web_xml_address = "find-staff-member";
-	var data = "format=" + getValue(format) + "&firstname="
-			+ getValue(firstname) + "&lastname=" + getValue(lastname);
+	var format = "format=" + getValue(format);
+	var data = format + "&firstname=" + getValue(firstname) + "&lastname="
+			+ getValue(lastname);
 	var address = web_xml_address + "?" + data;
-	ajaxResult(address, resultRegion);
+	if (format == "json") {
+		ajaxPost(address, data, function(request) {
+			showJsonCustomerInfo(request, resultRegion);
+		});
+	} else if (format == "xml") {
+		ajaxPost(address, data, function(request) {
+			showXmlCustomerInfo(request, resultRegion);
+		});
+	} else if (format == "string") {
+		ajaxPost(address, data, function(request) {
+			showStringCustomerInfo(request, resultRegion);
+		});
+	}
+
 }
 
-function addStaffMember(firstname, lastname, address, phone_num, email,
+function addStaffMember(firstname, lastname, address, phone, email,
 		resultRegion) {
 	var web_xml_address = "add-staff-member";
-	var data = "forename=" + getValue(firstname) + "&surname="
-			+ getValue(lastname) + "&address=" + getValue(address)
-			+ "&phone_num=" + getValue(phone_num) + "&email=" + getValue(email);
-	var address = web_xml_address + "?" + data;
+	var xmlData = "xml=" + "<staffInfo><forename>" + getValue(firstname)
+			+ "</forename>" + "<surname>" + getValue(lastname) + "</surname>"
+			+ "<email>" + getValue(email) + "</email>" + "<phone>"
+			+ getValue(phone) + "</phone>" + "<location>" + getValue(address)
+			+ "</location>" + "</staffInfo>";
+
+	console.log(xmlData);
+	var address = web_xml_address + "?" + xmlData;
 	ajaxResult(address, resultRegion);
 }
 
@@ -89,13 +107,13 @@ function showJsonCustomerInfo(request, resultRegion) {
 	}
 }
 
-//function stringCustomerTable(resultRegion, field1, field2) {
-//	var address = "show-customers";
-//	var data = makeParamString(field1, field2, "string");
-//	ajaxPost(address, data, function(request) {
-//		showStringCustomerInfo(request, resultRegion);
-//	});
-//}
+// function stringCustomerTable(resultRegion, field1, field2) {
+// var address = "show-customers";
+// var data = makeParamString(field1, field2, "string");
+// ajaxPost(address, data, function(request) {
+// showStringCustomerInfo(request, resultRegion);
+// });
+// }
 
 function showStringCustomerInfo(request, resultRegion) {
 	if ((request.readyState == 4) && (request.status == 200)) {

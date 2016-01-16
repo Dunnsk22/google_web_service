@@ -1,6 +1,8 @@
 package com.staff.service.web.servlets;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -9,10 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.ws.Response;
 
+import com.staff.service.web.dao.StaffDAO;
 import com.staff.service.web.model.StaffInfo;
-import com.staff.web.service.AddStaffMember;
-
 
 /**
  * Servlet implementation class AddStaffMemberServlet
@@ -34,7 +41,40 @@ public class AddStaffMemberServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request,response);
+		// Get parameters to be passed to StaffInfo Object
+		String xml = request.getParameter("xml");
+		System.out.println("Data is " + xml);
+
+		JAXBContext jaxbContext;
+		StaffInfo staffMember = null;
+		try {
+			jaxbContext = JAXBContext.newInstance(StaffInfo.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			StringReader reader = new StringReader(xml);
+			staffMember = (StaffInfo) unmarshaller.unmarshal(reader);
+
+			System.out.println("The staff data is : " + staffMember.toString());
+
+		} catch (JAXBException e1) {
+			e1.printStackTrace();
+		}
+
+		// Create StaffInfo object to access its methods
+		// StaffInfo staffMember = new StaffInfo();
+		// staffMember.setForename(staffMember.getForename());
+		// staffMember.setSurname(staffMember.getSurname());
+		// staffMember.setLocation(staffMember.getLocation());
+		// staffMember.setPhone(staffMember.getPhone());
+		// staffMember.setEmail(staffMember.getEmail());
+
+		try {
+			StaffDAO.addStaffMember(staffMember);
+			System.out.println(" Member added " + staffMember);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(" Errorr ");
+
+		}
 	}
 
 	/**
@@ -43,31 +83,8 @@ public class AddStaffMemberServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String forename = request.getParameter("forename");
-		String surname = request.getParameter("surname");
-		String address = request.getParameter("address");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone_num");
-
-		System.out.println("Forename is " + forename);
-		StaffInfo staffMember = new StaffInfo();
-
-		staffMember.setStaffID("102");
-		staffMember.setForename(forename);
-		staffMember.setSurname(surname);
-		staffMember.setLocation(address);
-		staffMember.setPhone(phone);
-		staffMember.setEmail(email);
-
-		AddStaffMember addStaffMember = new AddStaffMember();
-		try {
-			addStaffMember.addStaffMember(staffMember);
-			System.out.println(" Member added ");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println(" Errorr ");
-
-		}
+		doGet(request, response);
+		
 	}
 
 }

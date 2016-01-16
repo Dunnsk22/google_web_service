@@ -37,7 +37,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>Staff Member Servlet</servlet-name>
-		<servlet-class>com.staff.service.web.servlets.StaffDynamicStylingBuilder</servlet-class>
+		<servlet-class>com.staff.web.service.FindStaffByName</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Staff Member Servlet</servlet-name>

@@ -7,15 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
+@XmlRootElement
 public class StaffInfo {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	String Surname, Forename, Address, Email, Phone;
 	String StaffID;
 	
-
 	public StaffInfo(String staffID, String surname, String forename, String address, String phone, String email) {
 		super();
 		Surname = surname;
@@ -26,16 +26,13 @@ public class StaffInfo {
 		Phone = phone;
 	}
 	
+	
 	public StaffInfo() {
 		super();
-		this.Surname = "";
-		this.Forename = "";
-		this.Address = "";
-		this.Email = "";
-		this.Phone = "";
-		this.StaffID = "";
 
 	}
+	
+	
 
 	public String getStaffID() {
 		return StaffID;
