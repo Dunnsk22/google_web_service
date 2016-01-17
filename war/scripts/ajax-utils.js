@@ -70,7 +70,7 @@ function ajaxAlert(address) {
 	request.onreadystatechange = function() {
 		showResponseAlert(request);
 	};
-	request.open("GET", address, true);
+	request.open("POST", address, true);
 	request.send(null);
 }
 
@@ -90,7 +90,7 @@ function ajaxResult(address, resultRegion) {
 	request.onreadystatechange = function() {
 		showResponseText(request, resultRegion);
 	};
-	request.open("GET", address, true);
+	request.open("POST", address, true);
 	request.send(null);
 }
 

@@ -45,18 +45,21 @@ public class FindStaff extends HttpServlet {
 
 		} else if (format.equalsIgnoreCase("xml") ) {
 			sortedDataText = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-			sortedDataText += "<membersOfStaff>";
+			sortedDataText = "\n";
+			sortedDataText += "<membersOfStaff>\n";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "<staffMember><id>" + staffInfoList.get(i).getStaffID() + "</id>";
+				sortedDataText += "\t<staffMember>";
+				sortedDataText += "<id>" + staffInfoList.get(i).getStaffID() + "</id>";
 				sortedDataText += "<forename>" + staffInfoList.get(i).getForename() + "</forename>";
 				sortedDataText += "<surname>" + staffInfoList.get(i).getSurname() + "</surname>";
 				sortedDataText += "<address>" + staffInfoList.get(i).getLocation() + "</address>";
 				sortedDataText += "<phoneNumber>" + staffInfoList.get(i).getPhone() + "</phoneNumber>";
 				sortedDataText += "<email>" + staffInfoList.get(i).getEmail() + "</email></staffMember>";
+				sortedDataText += "\n";
 
 			}
-			sortedDataText += "</membersOfStaff> \n \n";
+			sortedDataText += "</membersOfStaff>";
 			System.out.println("XML DATA:  " + sortedDataText);
 
 		} else if (format.equalsIgnoreCase("string") ) {

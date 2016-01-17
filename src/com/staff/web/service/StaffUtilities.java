@@ -10,13 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.staff.service.web.dao.StaffDAO;
+import com.staff.service.web.dao.StaffInterface;
 import com.staff.service.web.model.StaffInfo;
 
 public class StaffUtilities {
 	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
 
+	static StaffInterface staffInterface = new StaffDAO();
+	
 	public static Map<String, StaffInfo> getSampleStaff() {
-		staffListData = StaffDAO.getStaffMembers();
+		staffListData = staffInterface.getStaffMembers();
 		return staffListData;
 	}
 

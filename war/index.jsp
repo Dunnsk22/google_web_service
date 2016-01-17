@@ -67,8 +67,8 @@
 					<h3>Find All Staff</h3>
 					<form action="#">
 						<select id="format">
-							<option value="xml" selected="selected">XML</option>
-							<option value="json">JSON</option>
+							<option value="json" selected="selected">JSON</option>
+							<option value="xml">XML</option>
 							<option value="string">Text</option>
 						</select> <br /> <input type="button" value="Get Staff Details"
 							onclick='getAllStaff("format", "result-region")' />
@@ -83,8 +83,8 @@
 						<label>First name: <input type="text" id="firstname" />
 						</label> <br /> <label>Last name: <input type="text"
 							id="lastname" /></label> <br /> <select id="individual">
-							<option value="xml" selected="selected">XML</option>
-							<option value="json">JSON</option>
+							<option value="json" selected="selected">JSON</option>
+							<option value="xml">xml</option>
 							<option value="string">Text</option>
 						</select> <br /> <input type="button" value="Get Staff Details"
 							onclick='getStaffMember("firstname", "lastname", "individual","result-region" )' />
@@ -99,8 +99,8 @@
 						<label>First name: <input type="text" id="forename" />
 						</label> <br /> <label>Last name: <input type="text" id="surname" /></label>
 						<br /> <label>Email: <input type="text" id="email" /></label> <br />
-						<label>Phone Number: <input type="text" id="phone_num" /></label>
-						<br /> <label>Address: <input type="text" id="address" /></label>
+						<label>Phone: <input type="text" id="phone_num" /></label>
+						<br /> <label>Location: <input type="text" id="address" /></label>
 						<br /> <input type="button" value="Add Staff"
 							onclick='addStaffMember("forename", "surname", "address", "phone_num", "email", "staff_result_add")' />
 					</form>
@@ -116,16 +116,11 @@
 		<div id="result-region"></div>
 
 		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Joshua Dunn &copy; Staff Web Service - Enterprise
-						Programming - 12100434</p>
-				</div>
-			</div>
-		</footer>
+			<footer class="footer">
+	        <p class="text-muted"></br>
+	        Joshua Dunn - 12100434 &nbsp; </p>
+	    </footer>
 
-	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 

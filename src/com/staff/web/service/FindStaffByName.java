@@ -22,28 +22,36 @@ import org.w3c.dom.Element;
 import com.staff.service.web.model.StaffInfo;
 
 @WebServlet("/FindStaffByName")
-public class FindStaffByName extends HttpServlet{
-	  
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String firstName = request.getParameter("firstname");
-	    String lastName = request.getParameter("lastname");
-	    String format = request.getParameter("format");
-	    String sortedDataText = null;
-	   	    
-	    List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(firstName, lastName);
+public class FindStaffByName extends HttpServlet {
 
-	    if (format.equalsIgnoreCase("json") ) {
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String firstName = request.getParameter("firstname");
+		String lastName = request.getParameter("lastname");
+		String format = request.getParameter("format");
+		String sortedDataText = null;
+
+		List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(
+				firstName, lastName);
+
+		if (format.equalsIgnoreCase("json")) {
 
 			sortedDataText = "[ ";
 
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "{\" id\":" + "\"" + staffInfoList.get(i).getStaffID() + "\",";
-				sortedDataText += "\"forename\":" + "\"" + staffInfoList.get(i).getForename() + "\",";
-				sortedDataText += "\"surname\":" + "\"" + staffInfoList.get(i).getSurname() + "\",";
-				sortedDataText += "\"address\":" + "\"" + staffInfoList.get(i).getLocation() + "\",";
-				sortedDataText += "\"phone\":" + "\"" + staffInfoList.get(i).getPhone() + "\",";
-				sortedDataText += "\"email\":" + "\"" + staffInfoList.get(i).getEmail() + "\"}";
+				sortedDataText += "{\"id\":" + "\""
+						+ staffInfoList.get(i).getStaffID() + "\",";
+				sortedDataText += "\"forename\":" + "\""
+						+ staffInfoList.get(i).getForename() + "\",";
+				sortedDataText += "\"surname\":" + "\""
+						+ staffInfoList.get(i).getSurname() + "\",";
+				sortedDataText += "\"address\":" + "\""
+						+ staffInfoList.get(i).getLocation() + "\",";
+				sortedDataText += "\"phone\":" + "\""
+						+ staffInfoList.get(i).getPhone() + "\",";
+				sortedDataText += "\"email\":" + "\""
+						+ staffInfoList.get(i).getEmail() + "\"}";
 
 				if (staffInfoList.size() - i > 1) {
 					sortedDataText += ",";
@@ -54,48 +62,62 @@ public class FindStaffByName extends HttpServlet{
 
 			System.out.println("JSON DATA:  " + sortedDataText);
 
-		} else if (format.equalsIgnoreCase("xml") ) {
+		} else if (format.equalsIgnoreCase("xml")) {
 			sortedDataText = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 			sortedDataText = "<membersOfStaff>";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "<staffMember>\n\n \t \t<id>" + staffInfoList.get(i).getStaffID() + "</id>\n";
-				sortedDataText += "<forename>" + staffInfoList.get(i).getForename() + "</forename>";
-				sortedDataText += "<surname>" + staffInfoList.get(i).getSurname() + "</surname>";
-				sortedDataText += "<address>" + staffInfoList.get(i).getLocation() + "</address>";
-				sortedDataText += "<phoneNumber>" + staffInfoList.get(i).getPhone() + "</phoneNumber>";
-				sortedDataText += "<email>" + staffInfoList.get(i).getEmail() + "</email></staffMember>";
+				sortedDataText += "<staffMember>\n\n \t \t<id>"
+						+ staffInfoList.get(i).getStaffID() + "</id>\n";
+				sortedDataText += "<forename>"
+						+ staffInfoList.get(i).getForename() + "</forename>";
+				sortedDataText += "<surname>"
+						+ staffInfoList.get(i).getSurname() + "</surname>";
+				sortedDataText += "<address>"
+						+ staffInfoList.get(i).getLocation() + "</address>";
+				sortedDataText += "<phoneNumber>"
+						+ staffInfoList.get(i).getPhone() + "</phoneNumber>";
+				sortedDataText += "<email>" + staffInfoList.get(i).getEmail()
+						+ "</email></staffMember>";
 
 			}
 			sortedDataText += "</membersOfStaff> \n \n";
 			System.out.println("XML DATA:  " + sortedDataText);
 
+		} else if (format.equalsIgnoreCase("string")) {
 
-		} else if (format.equalsIgnoreCase("string") ) {
-			
 			sortedDataText = "membersOfStaff[ ";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "id=" + staffInfoList.get(i).getStaffID() + "#";
-				sortedDataText += "forename=" + staffInfoList.get(i).getForename() + "#";
-				sortedDataText += "surname=" + staffInfoList.get(i).getSurname() + "#";
-				sortedDataText += "address=" + staffInfoList.get(i).getLocation() + "#";
-				sortedDataText += "phoneNumber=" + staffInfoList.get(i).getPhone() + "#";
+				sortedDataText += "id=" + staffInfoList.get(i).getStaffID()
+						+ "#";
+				sortedDataText += "forename="
+						+ staffInfoList.get(i).getForename() + "#";
+				sortedDataText += "surname="
+						+ staffInfoList.get(i).getSurname() + "#";
+				sortedDataText += "address="
+						+ staffInfoList.get(i).getLocation() + "#";
+				sortedDataText += "phoneNumber="
+						+ staffInfoList.get(i).getPhone() + "#";
 				sortedDataText += "email=" + staffInfoList.get(i).getEmail();
 
 				if (staffInfoList.size() - i > 1) {
 					sortedDataText += ", \n\n\n";
 				}
 			}
-			
+
 			sortedDataText += "]";
-			
-			System.out.println("TEXT DATA:  " + sortedDataText );
+
+			System.out.println("TEXT DATA:  " + sortedDataText);
 		}
 
 		PrintWriter out = response.getWriter();
 		out.print(sortedDataText);
-	    
-	  }
+
 	}
 
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+}

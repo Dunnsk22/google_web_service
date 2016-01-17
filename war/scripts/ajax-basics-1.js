@@ -20,9 +20,11 @@ function getAllStaff(inputField, resultRegion) {
 
 function getStaffMember(firstname, lastname, format, resultRegion) {
 	var web_xml_address = "find-staff-member";
-	var format = "format=" + getValue(format);
-	var data = format + "&firstname=" + getValue(firstname) + "&lastname="
-			+ getValue(lastname);
+	var firstname = getValue(firstname);
+	var lastname = getValue(lastname);
+	var format = getValue(format);
+	
+	var data = "firstname=" + firstname + "&lastname=" + lastname + "&format=" + format;
 	var address = web_xml_address + "?" + data;
 	if (format == "json") {
 		ajaxPost(address, data, function(request) {
