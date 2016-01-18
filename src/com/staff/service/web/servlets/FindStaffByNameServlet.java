@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.staff.web.service;
+package com.staff.service.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,9 +20,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.staff.service.web.model.StaffInfo;
+import com.staff.web.service.StaffUtilities;
 
 @WebServlet("/FindStaffByName")
-public class FindStaffByName extends HttpServlet {
+public class FindStaffByNameServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -21,33 +21,28 @@ import com.staff.service.web.model.StaffInfo;
  */
 public class StaffDAO implements StaffInterface {
 	private static Map<String, StaffInfo> staffMapData;
-	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
 
 
 	public Map<String, StaffInfo> getStaffMembers() {
-		DatastoreService dataStoreService = DatastoreServiceFactory
-				.getDatastoreService();
+		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		staffMapData = new LinkedHashMap<String, StaffInfo>();
 		Query query = new Query("StaffDetails");
 		PreparedQuery prep = dataStoreService.prepare(query);
 		for (Entity entity : prep.asIterable()) {
 			String idKey = entity.getKey().toString();
-			String id = idKey.substring(idKey.indexOf("(") + 1,
-					idKey.indexOf(")"));
+			String id = idKey.substring(idKey.indexOf("(") + 1, idKey.indexOf(")"));
 			String forename = entity.getProperty("Forename").toString();
 			String surname = entity.getProperty("Surname").toString();
 			String email = entity.getProperty("Email").toString();
 			String address = entity.getProperty("Address").toString();
 			String phone_num = entity.getProperty("Phone_Num").toString();
-			staffMapData.put(id, new StaffInfo(id, forename, surname, address,
-					email, phone_num));
+			staffMapData.put(id, new StaffInfo(id, forename, surname, address, email, phone_num));
 		}
 		return staffMapData;
 	}
 
 	public void addStaffMember(StaffInfo staff) {
-		DatastoreService dataStoreService = DatastoreServiceFactory
-				.getDatastoreService();
+		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		Entity staffMember = new Entity("StaffDetails");
 		staffMember.setProperty("Forename", staff.getForename());
 		staffMember.setProperty("Surname", staff.getSurname());

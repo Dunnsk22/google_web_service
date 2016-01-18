@@ -1,8 +1,12 @@
 .thumbnail {
-	width: 280px !important;
-	height: 300px !important;
+	width: 480px !important;
+	height: auto;
 }
 
 .hero-feature {
-	padding-left: 135px !important;
+	width:100%;
+	align: center !important;
+	
 }
+
+

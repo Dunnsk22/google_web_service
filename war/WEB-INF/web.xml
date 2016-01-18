@@ -5,18 +5,6 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
-	<!-- Use the URL http://hostname/appname/show-customers for the CustomerList 
-		servlet. -->
-		
-	<servlet>
-		<servlet-name>Add Staff</servlet-name>
-		<servlet-class>com.staff.web.service.Staff_Service_Google_ProjectServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Add Staff</servlet-name>
-		<url-pattern>/datastore_service</url-pattern>
-	</servlet-mapping>
-	
 	<servlet>
 		<servlet-name>All Staff Servlet</servlet-name>
 		<servlet-class>com.staff.web.service.FindStaff</servlet-class>
@@ -37,17 +25,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>Staff Member Servlet</servlet-name>
-		<servlet-class>com.staff.web.service.FindStaffByName</servlet-class>
+		<servlet-class>com.staff.service.web.servlets.FindStaffByNameServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Staff Member Servlet</servlet-name>
 		<url-pattern>/find-staff-member</url-pattern>
 	</servlet-mapping>
 
-
-	<!-- If URL gives a directory but no filename, try index.jsp first and index.html 
-		second. If neither is found, the result is server-specific (e.g., a directory 
-		listing or a 404 error). -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
