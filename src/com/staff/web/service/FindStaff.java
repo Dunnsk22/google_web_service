@@ -49,13 +49,14 @@ public class FindStaff extends HttpServlet {
 			sortedDataText += "<membersOfStaff>\n";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "\t<staffMember>";
-				sortedDataText += "<id>" + staffInfoList.get(i).getStaffID() + "</id>";
-				sortedDataText += "<forename>" + staffInfoList.get(i).getForename() + "</forename>";
-				sortedDataText += "<surname>" + staffInfoList.get(i).getSurname() + "</surname>";
-				sortedDataText += "<address>" + staffInfoList.get(i).getLocation() + "</address>";
-				sortedDataText += "<phoneNumber>" + staffInfoList.get(i).getPhone() + "</phoneNumber>";
-				sortedDataText += "<email>" + staffInfoList.get(i).getEmail() + "</email></staffMember>";
+				sortedDataText += "\t<staffMember>\n";
+				sortedDataText += "\t\t<id>" + staffInfoList.get(i).getStaffID() + "</id>\n";
+				sortedDataText += "\t\t<forename>" + staffInfoList.get(i).getForename() + "</forename>\n";
+				sortedDataText += "\t\t<surname>" + staffInfoList.get(i).getSurname() + "</surname>\n";
+				sortedDataText += "\t\t<address>" + staffInfoList.get(i).getLocation() + "</address>\n";
+				sortedDataText += "\t\t<phoneNumber>" + staffInfoList.get(i).getPhone() + "</phoneNumber>\n";
+				sortedDataText += "\t\t<email>" + staffInfoList.get(i).getEmail() + "</email>\n";
+				sortedDataText += "\t</staffMember>";
 				sortedDataText += "\n";
 
 			}

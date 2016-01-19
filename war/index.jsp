@@ -46,7 +46,10 @@
 			<h2>Staff Web Service</h2>
 			<p>Retrieve data in xml, json or text formats. Also, add Staff
 				members to the google datastore. Please scroll down to use the Web
-				Service functions. Please select the data type you want the server to respond with from the drop down lists.</p>
+				Service functions. Please select the data type you want the server
+				to respond with from the drop down lists. A dynamic front end has
+				been implemented to display the various formats of data in to a
+				neatly formatted table, created with javascript.</p>
 		</header>
 
 		<hr>
@@ -122,7 +125,7 @@
 						<label>Location: <input type="text" id="address" /></label> <br />
 						<!-- <input type="button" onclick='addStaffMember("forename", "surname", "address", "phone_num", "email", "staff_result_add")' /> -->
 						<button type="button" class="btn btn-primary"
-							onclick='addStaffMember("forename", "surname", "address", "phone_num", "email", "staff_result_add")'
+							onclick='addStaffMember("forename", "surname", "address", "phone_num", "email", "add-staff-result")'
 							margin-top="10px !important">Add Staff Member</button>
 					</form>
 				</div>
@@ -134,7 +137,11 @@
 		<center>
 			<h3>Results:</h3>
 		</center>
-		<div id="result-region"></div>
+		<div id="result-region"
+			style="text-align: center"></div>
+			
+			<div id="add-staff-result"
+			style="text-align: center"></div>
 
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>

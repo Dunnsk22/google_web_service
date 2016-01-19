@@ -42,22 +42,20 @@ function getStaffMember(firstname, lastname, format, resultRegion) {
 
 }
 
-function addStaffMember(firstname, lastname, address, phone, email,
-		resultRegion) {
+function addStaffMember(firstname, lastname, address, phone, email, resultRegion) {
 	var web_xml_address = "add-staff-member";
 	var xmlData = "xml=" + "<staffInfo><forename>" + getValue(firstname)
 			+ "</forename>" + "<surname>" + getValue(lastname) + "</surname>"
 			+ "<email>" + getValue(email) + "</email>" + "<phone>"
 			+ getValue(phone) + "</phone>" + "<location>" + getValue(address)
 			+ "</location>" + "</staffInfo>";
-
-	console.log(xmlData);
 	var address = web_xml_address + "?" + xmlData;
+	console.log(xmlData);
 	ajaxResult(address, resultRegion);
 }
 
 function getCustomerTable(rows) {
-	var headings = [ "Customer ID", "First Name", "Last Name", "Address",
+	var headings = [ "Customer ID", "Last Name", "First Name", "Address",
 			"Phone", "Email" ];
 	return (getTable(headings, rows));
 }
@@ -83,6 +81,12 @@ function showXmlCustomerInfo(request, resultRegion) {
 		}
 		var table = getCustomerTable(rows);
 		htmlInsert(resultRegion, table);
+	}
+}
+
+function showResponseMessage(request, resultRegion) {
+	if ((request.readyState == 4) && (request.status == 200)) {
+		var re
 	}
 }
 

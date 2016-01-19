@@ -25,34 +25,34 @@ import com.staff.web.service.StaffUtilities;
 @WebServlet("/FindStaffByName")
 public class FindStaffByNameServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstName = request.getParameter("firstname");
 		String lastName = request.getParameter("lastname");
 		String format = request.getParameter("format");
 		String sortedDataText = null;
 
-		List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(
-				firstName, lastName);
+		List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(firstName, lastName);
 
 		if (format.equalsIgnoreCase("json")) {
 
-			sortedDataText = "[ ";
+			sortedDataText = "[\n";
 
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "{\"id\":" + "\""
-						+ staffInfoList.get(i).getStaffID() + "\",";
-				sortedDataText += "\"forename\":" + "\""
-						+ staffInfoList.get(i).getForename() + "\",";
-				sortedDataText += "\"surname\":" + "\""
-						+ staffInfoList.get(i).getSurname() + "\",";
-				sortedDataText += "\"address\":" + "\""
-						+ staffInfoList.get(i).getLocation() + "\",";
-				sortedDataText += "\"phone\":" + "\""
-						+ staffInfoList.get(i).getPhone() + "\",";
-				sortedDataText += "\"email\":" + "\""
-						+ staffInfoList.get(i).getEmail() + "\"}";
+				sortedDataText += "\t{\n\t\t\"id\":" + "\""
+						+ staffInfoList.get(i).getStaffID() + "\",\n";
+				sortedDataText += "\t\t\"forename\":" + "\""
+						+ staffInfoList.get(i).getForename() + "\",\n";
+				sortedDataText += "\t\t\"surname\":" + "\""
+						+ staffInfoList.get(i).getSurname() + "\",\n";
+				sortedDataText += "\t\t\"address\":" + "\""
+						+ staffInfoList.get(i).getLocation() + "\",\n";
+				sortedDataText += "\t\t\"phone\":" + "\""
+						+ staffInfoList.get(i).getPhone() + "\",\n";
+				sortedDataText += "\t\t\"email\":" + "\""
+						+ staffInfoList.get(i).getEmail() + "\"\n\t}\n";
 
 				if (staffInfoList.size() - i > 1) {
 					sortedDataText += ",";
