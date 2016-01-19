@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>All Staff Servlet</servlet-name>
-		<servlet-class>com.staff.web.service.FindStaff</servlet-class>
+		<servlet-class>com.staff.service.web.controller.FindStaffServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>All Staff Servlet</servlet-name>
@@ -16,7 +16,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>Add Staff Servlet</servlet-name>
-		<servlet-class>com.staff.service.web.servlets.AddStaffMemberServlet</servlet-class>
+		<servlet-class>com.staff.service.web.controller.AddStaffMemberServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Add Staff Servlet</servlet-name>
@@ -25,7 +25,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>Staff Member Servlet</servlet-name>
-		<servlet-class>com.staff.service.web.servlets.FindStaffByNameServlet</servlet-class>
+		<servlet-class>com.staff.service.web.controller.FindStaffByNameServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Staff Member Servlet</servlet-name>

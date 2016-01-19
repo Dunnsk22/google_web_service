@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.staff.service.web.servlets;
+package com.staff.service.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,8 +19,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.staff.service.web.dao.StaffDAO;
+import com.staff.service.web.dao.StaffInterface;
 import com.staff.service.web.model.StaffInfo;
-import com.staff.web.service.StaffUtilities;
 
 @WebServlet("/FindStaffByName")
 public class FindStaffByNameServlet extends HttpServlet {
@@ -32,9 +33,12 @@ public class FindStaffByNameServlet extends HttpServlet {
 		String lastName = request.getParameter("lastname");
 		String format = request.getParameter("format");
 		String sortedDataText = null;
+		
+		//Create instance of StaffDAO
+		StaffInterface staffInterface = new StaffDAO();
+		List<StaffInfo> staffInfoList = staffInterface.getStaffMemberByName(firstName, lastName);
 
-		List<StaffInfo> staffInfoList = StaffUtilities.getNamedCustomer(firstName, lastName);
-
+		//Creates a JSON string that gets passed back to the client
 		if (format.equalsIgnoreCase("json")) {
 
 			sortedDataText = "[\n";
@@ -61,53 +65,55 @@ public class FindStaffByNameServlet extends HttpServlet {
 
 			sortedDataText += "]";
 
-			System.out.println("JSON DATA:  " + sortedDataText);
+			System.out.println("*** DEBUG *** JSON DATA:  " + sortedDataText);
 
+			//Creates a XML String to be passed back to the client
 		} else if (format.equalsIgnoreCase("xml")) {
 			sortedDataText = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 			sortedDataText = "<membersOfStaff>";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "<staffMember>\n\n \t \t<id>"
+				sortedDataText += "\t<staffMember>\n";
+				sortedDataText += "\t\t<id>"
 						+ staffInfoList.get(i).getStaffID() + "</id>\n";
-				sortedDataText += "<forename>"
-						+ staffInfoList.get(i).getForename() + "</forename>";
-				sortedDataText += "<surname>"
-						+ staffInfoList.get(i).getSurname() + "</surname>";
-				sortedDataText += "<address>"
-						+ staffInfoList.get(i).getLocation() + "</address>";
-				sortedDataText += "<phoneNumber>"
-						+ staffInfoList.get(i).getPhone() + "</phoneNumber>";
-				sortedDataText += "<email>" + staffInfoList.get(i).getEmail()
-						+ "</email></staffMember>";
+				sortedDataText += "\t\t<forename>"
+						+ staffInfoList.get(i).getForename() + "</forename>\n";
+				sortedDataText += "\t\t<surname>"
+						+ staffInfoList.get(i).getSurname() + "</surname>\n";
+				sortedDataText += "\t\t<address>"
+						+ staffInfoList.get(i).getLocation() + "</address>\n";
+				sortedDataText += "\t\t<phoneNumber>"
+						+ staffInfoList.get(i).getPhone() + "</phoneNumber>\n";
+				sortedDataText += "\t\t<email>"
+						+ staffInfoList.get(i).getEmail() + "</email>\n";
+				sortedDataText += "\t</staffMember>";
+				sortedDataText += "\n";
 
 			}
-			sortedDataText += "</membersOfStaff> \n \n";
+			sortedDataText += "</membersOfStaff>";
 			System.out.println("XML DATA:  " + sortedDataText);
 
+			//Creates a String to be passed back to the client
 		} else if (format.equalsIgnoreCase("string")) {
 
-			sortedDataText = "membersOfStaff[ ";
+			sortedDataText = "";
 			for (int i = 0; i < staffInfoList.size(); i++) {
 
-				sortedDataText += "id=" + staffInfoList.get(i).getStaffID()
-						+ "#";
-				sortedDataText += "forename="
-						+ staffInfoList.get(i).getForename() + "#";
-				sortedDataText += "surname="
-						+ staffInfoList.get(i).getSurname() + "#";
-				sortedDataText += "address="
-						+ staffInfoList.get(i).getLocation() + "#";
-				sortedDataText += "phoneNumber="
-						+ staffInfoList.get(i).getPhone() + "#";
-				sortedDataText += "email=" + staffInfoList.get(i).getEmail();
+				sortedDataText += "" + staffInfoList.get(i).getStaffID()
+						+ "#||#";
+				sortedDataText += "" + staffInfoList.get(i).getForename()
+						+ "#||#";
+				sortedDataText += "" + staffInfoList.get(i).getSurname()
+						+ "#||#";
+				sortedDataText += "" + staffInfoList.get(i).getLocation()
+						+ "#||#";
+				sortedDataText += "" + staffInfoList.get(i).getPhone() + "#||#";
+				sortedDataText += "" + staffInfoList.get(i).getEmail();
 
 				if (staffInfoList.size() - i > 1) {
-					sortedDataText += ", \n\n\n";
+					sortedDataText += " " + "\n\n\n";
 				}
 			}
-
-			sortedDataText += "]";
 
 			System.out.println("TEXT DATA:  " + sortedDataText);
 		}

@@ -3,7 +3,6 @@
  */
 package com.staff.service.web.model;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +15,8 @@ public class StaffInfo {
 	String Surname, Forename, Address, Email, Phone;
 	String StaffID;
 	
-	public StaffInfo(String staffID, String surname, String forename, String address, String phone, String email) {
+	public StaffInfo(String staffID, String surname, String forename, String address, String phone, String email) 
+	{
 		super();
 		Surname = surname;
 		Forename = forename;
@@ -26,58 +26,94 @@ public class StaffInfo {
 		Phone = phone;
 	}
 	
-	
-	public StaffInfo() {
+	public StaffInfo() 
+	{
 		super();
-
 	}
 	
-	
-
-	public String getStaffID() {
+	/*
+	 * @return staff_id to be used when accessing data
+	 */
+	public String getStaffID() 
+	{
 		return StaffID;
 	}
 
-	public void setStaffID(String staffID) {
+	/*
+	 * @param staffID - The staff ID that identifies the staff member
+	 */
+	public void setStaffID(String staffID) 
+	{
 		StaffID = staffID;
 	}
 
-	public String getSurname() {
+	/*
+	 * @return surname of Staff Member
+	 */
+	public String getSurname() 
+	{
 		return Surname;
 	}
 
+	/*
+	 * @param surname - sets staff member surname
+	 */
 	public void setSurname(String surname) {
 		Surname = surname;
 	}
 
+	/*
+	 * @return forename - returns staff member forename
+	 */
 	public String getForename() {
 		return Forename;
 	}
 
+	/*
+	 * @param forename - sets staff forename
+	 */
 	public void setForename(String forename) {
 		Forename = forename;
 	}
 
+	/*
+	 * @return Address - Returns a staff members address
+	 */
 	public String getLocation() {
 		return Address;
 	}
 
+	/*
+	 * @param location - sets staff member address
+	 */
 	public void setLocation(String location) {
 		Address = location;
 	}
 
+	/*
+	 * @return Phone - returns users phone num
+	 */
 	public String getPhone() {
 		return Phone;
 	}
 
+	/*
+	 * @param Phone - sets staff phone number
+	 */
 	public void setPhone(String phone) {
 		Phone = phone;
 	}
 
+	/*
+	 * @return Email - returns the staff member email address
+	 */
 	public String getEmail() {
 		return Email;
 	}
 
+	/*
+	 * @param Email - Sets a staff member' email
+	 */
 	public void setEmail(String email) {
 		Email = email;
 	}

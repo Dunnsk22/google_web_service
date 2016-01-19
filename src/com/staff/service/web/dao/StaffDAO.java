@@ -14,34 +14,49 @@ import com.staff.service.web.model.StaffInfo;
 
 /**
  * @author joshuadunn
- * @param staffMapData
- *            - Linked Hash Map storing the records pulled from the GAE
- *            datastore
+ * 
+ * ENTERPRISE PROGRAMMING           
  *
  */
+
 public class StaffDAO implements StaffInterface {
 	private static Map<String, StaffInfo> staffMapData;
+	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
+	static StaffInterface staffInterface = new StaffDAO();
 
-
-	public Map<String, StaffInfo> getStaffMembers() {
+	/* 
+	 * 
+	 * (non-Javadoc)
+	 * @see com.staff.service.web.dao.StaffInterface#getStaffMembers()
+	 * 
+	 */
+	public Map<String, StaffInfo> getStaffMembers() 
+	{
 		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		staffMapData = new LinkedHashMap<String, StaffInfo>();
 		Query query = new Query("StaffDetails");
-		PreparedQuery prep = dataStoreService.prepare(query);
-		for (Entity entity : prep.asIterable()) {
-			String idKey = entity.getKey().toString();
+		PreparedQuery googleQuery = dataStoreService.prepare(query);
+		for (Entity datastoreEntity : googleQuery.asIterable()) 
+		{
+			String idKey = datastoreEntity.getKey().toString();
 			String id = idKey.substring(idKey.indexOf("(") + 1, idKey.indexOf(")"));
-			String forename = entity.getProperty("Forename").toString();
-			String surname = entity.getProperty("Surname").toString();
-			String email = entity.getProperty("Email").toString();
-			String address = entity.getProperty("Address").toString();
-			String phone_num = entity.getProperty("Phone_Num").toString();
+			String forename = datastoreEntity.getProperty("Forename").toString();
+			String surname = datastoreEntity.getProperty("Surname").toString();
+			String email = datastoreEntity.getProperty("Email").toString();
+			String address = datastoreEntity.getProperty("Address").toString();
+			String phone_num = datastoreEntity.getProperty("Phone_Num").toString();
 			staffMapData.put(id, new StaffInfo(id, forename, surname, address, email, phone_num));
 		}
 		return staffMapData;
 	}
 
-	public void addStaffMember(StaffInfo staff) {
+	
+	/* (non-Javadoc)
+	 * @see com.staff.service.web.dao.StaffInterface#addStaffMember(com.staff.service.web.model.StaffInfo)
+	 */
+	public void addStaffMember(StaffInfo staff) 
+	{	
+		//Create a DatastoreServiceFactory to add data to GAE datastore
 		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		Entity staffMember = new Entity("StaffDetails");
 		staffMember.setProperty("Forename", staff.getForename());
@@ -52,5 +67,33 @@ public class StaffDAO implements StaffInterface {
 
 		// Add the data to the GAE Datastore
 		dataStoreService.put(staffMember);
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see com.staff.service.web.dao.StaffInterface#getStaffMemberByName(java.lang.String, java.lang.String)
+	 */
+	public List<StaffInfo> getStaffMemberByName(String firstname, String lastname) 
+	{
+		Map<String, StaffInfo> staffInfoMap = getDatastoreEntries();
+		ArrayList<StaffInfo> staffList = new ArrayList<StaffInfo>();
+		for (StaffInfo info : staffInfoMap.values()) 
+		{
+			if (info.getForename().equalsIgnoreCase(firstname) && (info.getSurname().equalsIgnoreCase(lastname))) 
+			{
+				staffList.add(info);
+			}
+		}
+		return staffList;
+	}
+	
+	
+	/*
+	 * @return static Map with a String key and StaffInfo value
+	 */
+	public static Map<String, StaffInfo> getDatastoreEntries() 
+	{
+		staffListData = staffInterface.getStaffMembers();
+		return staffListData;
 	}
 }
