@@ -23,7 +23,6 @@ function getStaffMember(firstname, lastname, format, resultRegion) {
 	var firstname = getValue(firstname);
 	var lastname = getValue(lastname);
 	var format = getValue(format);
-	
 	var data = "firstname=" + firstname + "&lastname=" + lastname + "&format=" + format;
 	var address = web_xml_address + "?" + data;
 	if (format == "json") {
@@ -42,7 +41,7 @@ function getStaffMember(firstname, lastname, format, resultRegion) {
 
 }
 
-function addStaffMember(firstname, lastname, address, phone, email, resultRegion) {
+function addStaffMember(firstname, lastname, address, phone, email,resultRegion) {
 	var web_xml_address = "add-staff-member";
 	var xmlData = "xml=" + "<staffInfo><forename>" + getValue(firstname)
 			+ "</forename>" + "<surname>" + getValue(lastname) + "</surname>"

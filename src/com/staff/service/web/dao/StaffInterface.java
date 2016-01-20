@@ -28,6 +28,6 @@ public interface StaffInterface {
 
 	public abstract void addStaffMember(StaffInfo staff);
 
-	public abstract List<StaffInfo> getStaffMemberByName(String firstName, String lastName);
+	public abstract Map<String, StaffInfo> getStaffMemberByName(String firstName, String lastName);
 
 }

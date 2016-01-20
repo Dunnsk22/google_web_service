@@ -10,10 +10,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class StaffInfo {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	String Surname, Forename, Address, Email, Phone;
 	String StaffID;
+	
+	public StaffInfo() 
+	{
+		super();
+	}
 	
 	public StaffInfo(String staffID, String surname, String forename, String address, String phone, String email) 
 	{
@@ -26,11 +29,13 @@ public class StaffInfo {
 		Phone = phone;
 	}
 	
-	public StaffInfo() 
-	{
-		super();
-	}
 	
+	
+	public StaffInfo(StaffInfo staffInfo) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/*
 	 * @return staff_id to be used when accessing data
 	 */
