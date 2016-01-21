@@ -98,16 +98,16 @@ public class ResponseBuilder {
 		String sortedDataText = "";
 		for (int i = 0; i < staffInfo.size(); i++) {
 
-			sortedDataText += "" + staffInfo.get(i).getStaffID()
+			sortedDataText += " " + staffInfo.get(i).getStaffID()
 					+ "#||#";
-			sortedDataText += "" + staffInfo.get(i).getForename()
+			sortedDataText += " " + staffInfo.get(i).getForename()
 					+ "#||#";
-			sortedDataText += "" + staffInfo.get(i).getSurname()
+			sortedDataText += " " + staffInfo.get(i).getSurname()
 					+ "#||#";
-			sortedDataText += "" + staffInfo.get(i).getLocation()
+			sortedDataText += " " + staffInfo.get(i).getLocation()
 					+ "#||#";
-			sortedDataText += "" + staffInfo.get(i).getPhone() + "#||#";
-			sortedDataText += "" + staffInfo.get(i).getEmail();
+			sortedDataText += " " + staffInfo.get(i).getPhone() + "#||#";
+			sortedDataText += " " + staffInfo.get(i).getEmail();
 
 			if (staffInfo.size() - i > 1) {
 				sortedDataText += " " + "\n\n\n";

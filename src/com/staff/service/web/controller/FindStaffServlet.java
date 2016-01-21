@@ -37,7 +37,7 @@ public class FindStaffServlet extends HttpServlet {
 		} else if (format.equalsIgnoreCase("xml")) {
 			
 			responseData = dataFormatResponse.buildXMLResponse(staffInfoList);
-			System.out.println(responseData);
+			System.out.println("XML DATA:  " + responseData);
 
 		} else if (format.equalsIgnoreCase("string")) {
 

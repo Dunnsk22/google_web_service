@@ -3,12 +3,11 @@
  */
 package com.staff.service.web.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder = { "staffID", "surname", "forename", "address", "phone", "email" })
 public class StaffInfo {
 	String Surname, Forename, Address, Email, Phone;
 	String StaffID;

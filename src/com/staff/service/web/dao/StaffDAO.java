@@ -8,6 +8,7 @@ import java.util.Map;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.staff.service.web.model.StaffInfo;
@@ -23,6 +24,8 @@ public class StaffDAO implements StaffInterface {
 	private static Map<String, StaffInfo> staffMapData;
 	private static Map<String, StaffInfo> staffListData = new LinkedHashMap<String, StaffInfo>();
 	static StaffInterface staffInterface = new StaffDAO();
+	DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
+
 
 	/*
 	 * 
@@ -31,17 +34,19 @@ public class StaffDAO implements StaffInterface {
 	 * @see com.staff.service.web.dao.StaffInterface#getStaffMembers()
 	 */
 	public Map<String, StaffInfo> getStaffMembers() {
-		DatastoreService dataStoreService = DatastoreServiceFactory
-				.getDatastoreService();
+		DatastoreService dataStoreService = DatastoreServiceFactory.getDatastoreService();
 		staffMapData = new LinkedHashMap<String, StaffInfo>();
 		Query query = new Query("StaffDetails");
 		PreparedQuery googleQuery = dataStoreService.prepare(query);
+		
+		if (googleQuery.countEntities(FetchOptions.Builder.withDefaults()) < 1) {
+			addNewDatastoreEntry();
+		}
+		
 		for (Entity datastoreEntity : googleQuery.asIterable()) {
 			String idKey = datastoreEntity.getKey().toString();
-			String id = idKey.substring(idKey.indexOf("(") + 1,
-					idKey.indexOf(")"));
-			String forename = datastoreEntity.getProperty("Forename")
-					.toString();
+			String id = idKey.substring(idKey.indexOf("(") + 1,idKey.indexOf(")"));
+			String forename = datastoreEntity.getProperty("Forename").toString();
 			String surname = datastoreEntity.getProperty("Surname").toString();
 			String email = datastoreEntity.getProperty("Email").toString();
 			String address = datastoreEntity.getProperty("Address").toString();
@@ -61,9 +66,6 @@ public class StaffDAO implements StaffInterface {
 	 * .web.model.StaffInfo)
 	 */
 	public void addStaffMember(StaffInfo staff) {
-		// Create a DatastoreServiceFactory to add data to GAE datastore
-		DatastoreService dataStoreService = DatastoreServiceFactory
-				.getDatastoreService();
 		Entity staffMember = new Entity("StaffDetails");
 		staffMember.setProperty("Forename", staff.getForename());
 		staffMember.setProperty("Surname", staff.getSurname());
@@ -105,5 +107,31 @@ public class StaffDAO implements StaffInterface {
 	public static Map<String, StaffInfo> getDatastoreEntries() {
 		staffListData = staffInterface.getStaffMembers();
 		return staffListData;
+	}
+	
+	/** 
+	 * 
+	 * Adds Two New Entities to the GAE Datastore for testing locally
+	 *
+	 */
+	public void addNewDatastoreEntry() {
+		Entity staffMember = new Entity("StaffDetails");
+		staffMember.setProperty("Forename", "Johnathon");
+		staffMember.setProperty("Surname", "Robson");
+		staffMember.setProperty("Email", "robby_john@me.com");
+		staffMember.setProperty("Phone_Num", "01887 223112");
+		staffMember.setProperty("Address", "22 Hataway Close, Biddulph, Stoke on Trent");
+
+		Entity staffMemberTwo = new Entity("StaffDetails");
+		staffMemberTwo.setProperty("Forename", "Kai");
+		staffMemberTwo.setProperty("Surname", "Salt");
+		staffMemberTwo.setProperty("Email", "salty_pig@me.com");
+		staffMemberTwo.setProperty("Phone_Num", "01877 223112");
+		staffMemberTwo.setProperty("Address", "2211 Runaway Drive, Congleton, Stoke on Trent");
+
+		// Add the data to the GAE Datastore
+		dataStoreService.put(staffMember);
+		dataStoreService.put(staffMemberTwo);
+		
 	}
 }
